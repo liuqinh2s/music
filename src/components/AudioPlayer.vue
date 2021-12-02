@@ -7,7 +7,12 @@
     />
     <h2 class="title">{{ title }}</h2>
     <h3 class="artist">{{ artist }}</h3>
-    <AudioControls />
+    <AudioControls
+      :isPlaying="isPlaying"
+      :onPlayPauseClick="onPlayPauseClick"
+      :onPrevClick="onPrevClick"
+      :onNextClick="onNextClick"
+    />
     <input
       type="range"
       :value="trackProgeress"
@@ -24,26 +29,20 @@
 </template>
 <script>
 import AudioControls from "./AudioControls.vue";
-import ref from "vue";
-import api from "@/api/api";
 
 export default {
-  setup() {
-    api.getSongUrl(1461725161).then((res) => {
-      console.log(res);
-    });
-    const audio = ref(new Audio(""));
-    return {
-      audio,
-    };
-  },
   data() {
     return {
-      isPlaying: true,
+      isPlaying: false,
       image: "",
       title: "",
       artist: "",
     };
+  },
+  methods: {
+    onPlayPauseClick() {},
+    onPrevClick() {},
+    onNextClick() {},
   },
   components: {
     AudioControls,

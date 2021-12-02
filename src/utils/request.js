@@ -15,9 +15,9 @@ instance.interceptors.request.use((req) => {
 
 // 响应拦截
 instance.interceptors.response.use((res) => {
-  const { result, code, msg = NETWORK_ERROR } = res.data;
+  const { data, code, msg = NETWORK_ERROR } = res.data;
   if (code === 200) {
-    return result || res.data;
+    return data || res.data;
   } else {
     console.error(msg);
     return Promise.reject(msg);
