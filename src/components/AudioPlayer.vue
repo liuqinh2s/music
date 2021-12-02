@@ -24,7 +24,19 @@
 </template>
 <script>
 import AudioControls from "./AudioControls.vue";
+import ref from "vue";
+import api from "@/api/api";
+
 export default {
+  setup() {
+    api.getSongUrl(1461725161).then((res) => {
+      console.log(res);
+    });
+    const audio = ref(new Audio(""));
+    return {
+      audio,
+    };
+  },
   data() {
     return {
       isPlaying: true,
