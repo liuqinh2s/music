@@ -14,6 +14,8 @@
   </van-tabs>
 </template>
 <script>
+import api from "@/api/api";
+
 export default {
   data: function () {
     return {
@@ -23,8 +25,10 @@ export default {
     };
   },
   methods: {
-    onSearch: function () {
-      // Toast(val);
+    onSearch: function (val) {
+      api.searchMusic(val).then((res) => {
+        console.log(res);
+      });
     },
     onCancel: function () {
       // Toast("取消");
