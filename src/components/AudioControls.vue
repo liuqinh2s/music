@@ -6,7 +6,7 @@
       aria-label="Previous"
       @click="onPrevClick"
     >
-      <van-icon :name="previous" />
+      <img :src="previous" />
     </button>
     <button
       type="button"
@@ -15,7 +15,7 @@
       @click="onPlayPauseClick"
       v-if="isPlaying"
     >
-      <van-icon :name="pause" />
+      <img :src="pause" />
     </button>
     <button
       type="button"
@@ -24,10 +24,10 @@
       @click="onPlayPauseClick"
       v-if="!isPlaying"
     >
-      <van-icon :name="play" />
+      <img :src="play" />
     </button>
     <button type="button" class="next" aria-label="Next" @click="onNextClick">
-      <van-icon :name="next" />
+      <img :src="next" />
     </button>
   </div>
 </template>
@@ -57,10 +57,15 @@ export default {
   margin: 0 auto 15px;
 }
 
+.audio-controls button {
+  border: none;
+  background: none;
+}
+
 .audio-controls .previous img,
 .audio-controls .next img {
-  width: 35px;
-  height: 35px;
+  width: 20px;
+  height: 20px;
 }
 
 .audio-controls .play img,
