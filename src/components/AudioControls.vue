@@ -1,5 +1,17 @@
 <template>
   <div class="footer">
+    <input
+      type="range"
+      :value="trackProgeress"
+      step="1"
+      min="0"
+      :max="duration"
+      class="progress"
+      @change="onScrub"
+      @mouseup="onScrubEnd"
+      @keyup="onScrubEnd"
+      style="background: trackStyling"
+    />
     <div class="audio-controls">
       <button
         type="button"
@@ -57,7 +69,8 @@ export default {
   bottom: 0;
   width: 100%;
 }
-.audio-controls {
+.audio-controls,
+.progress {
   display: flex;
   justify-content: space-between;
   width: 75%;

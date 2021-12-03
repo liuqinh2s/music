@@ -13,18 +13,6 @@
       :onPrevClick="onPrevClick"
       :onNextClick="onNextClick"
     />
-    <input
-      type="range"
-      :value="trackProgeress"
-      step="1"
-      min="0"
-      :max="duration"
-      class="progress"
-      @change="onScrub"
-      @mouseup="onScrubEnd"
-      @keyup="onScrubEnd"
-      style="background: trackStyling"
-    />
   </div>
 </template>
 <script>
