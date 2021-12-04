@@ -1,48 +1,42 @@
 <template>
-  <div class="footer">
-    <input
-      type="range"
-      :value="trackProgeress"
-      step="1"
-      min="0"
-      :max="duration"
-      class="progress"
-      @change="onScrub"
-      @mouseup="onScrubEnd"
-      @keyup="onScrubEnd"
-      style="background: trackStyling"
-    />
-    <div class="audio-controls">
-      <button
-        type="button"
-        class="previous"
-        aria-label="Previous"
-        @click="onPrevClick"
-      >
-        <img :src="previous" />
-      </button>
-      <button
-        type="button"
-        className="pause"
-        aria-label="Pause"
-        @click="onPlayPauseClick"
-        v-if="isPlaying"
-      >
-        <img :src="pause" />
-      </button>
-      <button
-        type="button"
-        className="play"
-        aria-label="play"
-        @click="onPlayPauseClick"
-        v-if="!isPlaying"
-      >
-        <img :src="play" />
-      </button>
-      <button type="button" class="next" aria-label="Next" @click="onNextClick">
-        <img :src="next" />
-      </button>
-    </div>
+  <div class="audio-controls">
+    <button
+      type="button"
+      class="previous"
+      aria-label="Previous"
+      @click="onPrevClick"
+    >
+      <img :src="previous" />
+    </button>
+    <button
+      type="button"
+      className="pause"
+      aria-label="Pause"
+      @click="
+        () => {
+          onPlayPauseClick(false);
+        }
+      "
+      v-if="isPlaying"
+    >
+      <img :src="pause" />
+    </button>
+    <button
+      type="button"
+      className="play"
+      aria-label="play"
+      @click="
+        () => {
+          onPlayPauseClick(true);
+        }
+      "
+      v-if="!isPlaying"
+    >
+      <img :src="play" />
+    </button>
+    <button type="button" class="next" aria-label="Next" @click="onNextClick">
+      <img :src="next" />
+    </button>
   </div>
 </template>
 <script>
@@ -64,13 +58,7 @@ export default {
 };
 </script>
 <style scoped>
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-.audio-controls,
-.progress {
+.audio-controls {
   display: flex;
   justify-content: space-between;
   width: 75%;

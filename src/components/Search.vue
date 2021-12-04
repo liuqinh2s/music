@@ -31,12 +31,16 @@ export default {
   },
   methods: {
     onSearch: function (val) {
-      api.searchMusic(val).then((res) => {
+      console.log(val);
+      // api.searchMusic(val).then((res) => {
+      //   console.log(res);
+      //   if (res.songs.length) {
+      //     this.isEmpty = false;
+      //     this.list = res.songs;
+      //   }
+      // });
+      api.getSongUrl(5093684).then((res) => {
         console.log(res);
-        if (res.songs.length) {
-          this.isEmpty = false;
-          this.list = res.songs;
-        }
       });
     },
     onCancel: function () {
