@@ -3,49 +3,46 @@
     v-model="value"
     shape="round"
     background="#4fc08d"
-    placeholder="请输入搜搜关键词"
+    placeholder="请输入搜索关键词"
     @search="onSearch"
     @cancel="onCancel"
   >
   </van-search>
-  <van-tabs v-model="activeTab">
-    <van-tab title="标签1">
+  <van-tabs v-model="activeType" v-if="searchActive">
+    <van-tab v-for="item in type" :key="item.type" :title="item.title">
       <van-empty v-if="isEmpty" :description="empty" />
-    </van-tab>
-    <van-tab title="标签2">
-      <van-empty :description="empty" />
+      <List :value="value" :limit="limit" :activeType="item.type" />
     </van-tab>
   </van-tabs>
 </template>
 <script>
+import List from "./List.vue";
 import api from "@/api/api";
 
 export default {
-  data: function () {
+  data() {
     return {
       value: "",
-      activeTab: 1,
+      limit: 10,
+      searchActive: false,
+      activeType: 1,
       isEmpty: true,
       empty: "你的小宝贝~",
+      type: api.searchType,
     };
   },
   methods: {
-    onSearch: function (val) {
-      console.log(val);
-      // api.searchMusic(val).then((res) => {
-      //   console.log(res);
-      //   if (res.songs.length) {
-      //     this.isEmpty = false;
-      //     this.list = res.songs;
-      //   }
-      // });
-      api.getSongUrl(5093684).then((res) => {
-        console.log(res);
-      });
+    onSearch(val) {
+      this.value = val;
+      this.isEmpty = false;
+      this.searchActive = true;
     },
-    onCancel: function () {
+    onCancel() {
       // Toast("取消");
     },
+  },
+  components: {
+    List,
   },
 };
 </script>
