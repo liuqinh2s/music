@@ -1,4 +1,5 @@
 <template>
+  <img :src="arrowDown" class="arrowDown" @click="dropDown" />
   <div class="track-info">
     <img
       :class="{ artwork: true, playing: true }"
@@ -48,6 +49,7 @@ export default {
       trackProgress: 0,
       interval: null,
       imgSrc: "",
+      arrowDown: require("@/assets/arrow-down-bold.svg"),
     };
   },
   methods: {
@@ -77,6 +79,9 @@ export default {
       }, 100);
     },
     toNextTrack() {},
+    dropDown() {
+      this.$router.push({ name: "Search" });
+    },
   },
   watch: {
     isPlaying() {
@@ -120,6 +125,9 @@ export default {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
 }
+.fold {
+  display: fixed;
+}
 .footer {
   position: fixed;
   bottom: 0;
@@ -147,5 +155,13 @@ export default {
 .artist {
   font-weight: 300;
   margin-top: 0;
+}
+.arrowDown {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+  position: fixed;
+  top: 20px;
+  left: 20px;
 }
 </style>
