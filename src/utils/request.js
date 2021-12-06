@@ -4,7 +4,7 @@ const NETWORK_ERROR = "网络异常";
 
 const instance = axios.create({
   baseURL: "http://127.0.0.1:3000",
-  timeout: 1000,
+  timeout: 10000,
 });
 
 // 请求拦截

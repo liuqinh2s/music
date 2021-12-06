@@ -7,11 +7,11 @@ export default {
     { title: "歌手", type: 100 },
     { title: "歌单", type: 1000 },
     { title: "用户", type: 1002 },
-    { title: "MV", type: 1004 },
-    { title: "歌词", type: 1006 },
-    { title: "电台", type: 1009 },
-    { title: "视频", type: 1014 },
-    { title: "综合", type: 1018 },
+    // { title: "MV", type: 1004 },
+    // { title: "歌词", type: 1006 },
+    // { title: "电台", type: 1009 },
+    // { title: "视频", type: 1014 },
+    // { title: "综合", type: 1018 },
   ],
   // 获取歌曲url
   getSongUrl(id) {

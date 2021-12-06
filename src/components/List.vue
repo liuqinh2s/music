@@ -25,10 +25,20 @@
       <van-cell v-for="item in list" :key="item.id" :title="item.name" />
     </van-cell-group>
     <van-cell-group v-if="activeType === api.searchType[3].type">
-      <van-cell v-for="item in list" :key="item.id" :title="item.name" />
+      <van-cell
+        v-for="item in list"
+        :key="item.id"
+        :title="item.name"
+        :label="`${item.trackCount}首 , by${item.creator.nickname} , 播放${item.playCount}次`"
+      />
     </van-cell-group>
     <van-cell-group v-if="activeType === api.searchType[4].type">
-      <van-cell v-for="item in list" :key="item.id" :title="item.name" />
+      <van-cell
+        v-for="item in list"
+        :key="item.id"
+        :title="item.nickname"
+        :label="`${item.signature}`"
+      />
     </van-cell-group>
   </van-list>
 </template>
@@ -85,31 +95,11 @@ export default {
               break;
             }
             case api.searchType[3].type: {
-              items = res.result.albums;
+              items = res.result.playlists;
               break;
             }
             case api.searchType[4].type: {
-              items = res.result.albums;
-              break;
-            }
-            case api.searchType[5].type: {
-              items = res.result.albums;
-              break;
-            }
-            case api.searchType[6].type: {
-              items = res.result.albums;
-              break;
-            }
-            case api.searchType[7].type: {
-              items = res.result.albums;
-              break;
-            }
-            case api.searchType[8].type: {
-              items = res.result.albums;
-              break;
-            }
-            case api.searchType[9].type: {
-              items = res.result.albums;
+              items = res.result.userprofiles;
               break;
             }
             default:
