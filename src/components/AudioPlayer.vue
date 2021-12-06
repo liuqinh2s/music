@@ -35,6 +35,7 @@
 </template>
 <script>
 import AudioControls from "./AudioControls.vue";
+import api from "@/api/api";
 
 export default {
   data() {
@@ -43,9 +44,7 @@ export default {
       image: "",
       title: "",
       artist: "",
-      audio: new Audio(
-        "http://m8.music.126.net/20211204233108/b90833df6921f03b808eeddbc5394a72/ymusic/31f6/a46b/c9e3/12a051aff334d06786b72977076aae8f.mp3"
-      ),
+      audio: new Audio(),
       trackProgress: 0,
       interval: null,
     };
@@ -74,7 +73,7 @@ export default {
         } else {
           this.trackProgress = this.audio.currentTime;
         }
-      }, 1000);
+      }, 100);
     },
     toNextTrack() {},
   },
@@ -87,6 +86,12 @@ export default {
         this.audio.pause();
       }
     },
+  },
+  created() {
+    api.getSongUrl(this.$route.query.audioId).then((res) => {
+      console.log(res);
+      this.audio.src = res[0].url;
+    });
   },
   mounted() {},
   unmounted() {
