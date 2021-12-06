@@ -8,7 +8,14 @@
     <van-cell-group v-if="activeType === api.searchType[0].type">
       <van-cell
         v-for="item in list"
-        :to="{ name: 'AudioPlayer', query: { audioId: item.id } }"
+        :to="{
+          name: 'AudioPlayer',
+          query: {
+            audioId: item.id,
+            title: item.name,
+            artist: item.artists[0].name,
+          },
+        }"
         :key="item.id"
         :title="item.name"
         :label="`${item.artists[0].name} - ${item.album.name}`"

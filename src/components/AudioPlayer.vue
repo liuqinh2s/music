@@ -1,8 +1,8 @@
 <template>
   <div class="track-info">
     <img
-      :class="{ artwork: true, playing: isPlaying }"
-      :src="image"
+      :class="{ artwork: true, playing: true }"
+      :src="imgSrc"
       :alt="`track artwork for ${title} by ${artist}`"
     />
     <h2 class="title">{{ title }}</h2>
@@ -47,6 +47,7 @@ export default {
       audio: new Audio(),
       trackProgress: 0,
       interval: null,
+      imgSrc: "",
     };
   },
   methods: {
@@ -88,9 +89,14 @@ export default {
     },
   },
   created() {
-    api.getSongUrl(this.$route.query.audioId).then((res) => {
-      console.log(res);
-      this.audio.src = res[0].url;
+    this.title = this.$route.query.title;
+    this.artist = this.$route.query.artist;
+    const promise1 = api.getSongDetail(this.$route.query.audioId);
+    const promise2 = api.getSongUrl(this.$route.query.audioId);
+    Promise.all([promise1, promise2]).then((values) => {
+      console.log(values);
+      this.imgSrc = values[0].songs[0].al.picUrl;
+      this.audio.src = values[1][0].url;
     });
   },
   mounted() {},
@@ -104,6 +110,16 @@ export default {
 };
 </script>
 <style>
+.track-info {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
 .footer {
   position: fixed;
   bottom: 0;
@@ -114,5 +130,22 @@ export default {
   justify-content: space-between;
   width: 75%;
   margin: 0 auto 15px;
+}
+.artwork {
+  border-radius: 50%;
+  display: block;
+  height: 200px;
+  width: 200px;
+}
+.playing {
+  animation: rotate 10s linear infinite;
+}
+.title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.artist {
+  font-weight: 300;
+  margin-top: 0;
 }
 </style>

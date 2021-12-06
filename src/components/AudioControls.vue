@@ -82,7 +82,7 @@ export default {
   width: 40px;
 }
 
-.audio-controls path {
-  fill: var(--white);
+.audio-controls img {
+  filter: invert(100%);
 }
 </style>
